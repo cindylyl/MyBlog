@@ -63,6 +63,16 @@ class Post(models.Model):
 
         super(Post,self).save(*args, **kwargs)
 
+    def next_post(self):
+        # next post
+        return Post.objects.filter(id__gt=self.id).order_by('id').first()
+
+    def prev_post(self):
+        # previous post
+        return Post.objects.filter(id__lt=self.id).first()
+
+
+
 
 
 

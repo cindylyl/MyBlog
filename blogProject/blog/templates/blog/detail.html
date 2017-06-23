@@ -22,13 +22,22 @@
                 <span class="label label-default">{{ tag.tag_name }}</span>
             {% endfor %}
         </div>
+
         <ul class="pager">
-          <li class="previous">
-            <a href="#">&larr; Older</a>
-          </li>
-          <li class="next">
-            <a href="#">Newer &rarr;</a>
-          </li>
+            <li class="previous">
+            {% if post.prev_post %}
+             <a href="{{ post.prev_post.get_absolute_url }}"><- {{ post.prev_post.title }}</a>
+            {% else %}
+               <a> None</a>
+            {% endif %}
+            </li>
+            <li class="next">
+            {% if post.next_post %}
+                <a href="{{ post.next_post.get_absolute_url }}">{{ post.next_post.title }} -></a>
+            {% else %}
+                <a> None</a>
+            {% endif %}
+            </li>
         </ul>
     </article>
     <section class="comment-area" id="comment-area">
